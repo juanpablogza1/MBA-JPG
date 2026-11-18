@@ -1,0 +1,17 @@
+{
+  "name": "Escalera MBA",
+  "short_name": "Escalera",
+  "description": "Entrena para el GRE como un juego y descubre a qué MBA te alcanza tu puntaje.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f2f4ef",
+  "theme_color": "#17402f",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

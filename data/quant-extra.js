@@ -1,0 +1,28 @@
+// Preguntas Quant escritas a mano (difíciles y conceptuales).
+const QC = [
+  'Quantity A is greater.',
+  'Quantity B is greater.',
+  'The two quantities are equal.',
+  'The relationship cannot be determined from the information given.',
+];
+
+export const QUANT_EXTRA = [
+  { id: 'h01', type: 'qc', d: 4, topic: 'Números', stem: 'x and y are integers, and x > y > 0.', qa: 'x / y', qb: '(x + 1) / (y + 1)', choices: QC, answer: 0, exp: 'Sumar 1 arriba y abajo acerca la fracción a 1. Como x/y > 1, (x+1)/(y+1) es menor. Ejemplo: 3/2 = 1.5 vs 4/3 ≈ 1.33.' },
+  { id: 'h02', type: 'qc', d: 5, topic: 'Números', stem: 'n is a positive integer.', qa: 'The remainder when n<sup>2</sup> is divided by 4', qb: '1', choices: QC, answer: 3, exp: 'Si n es par, n² deja residuo 0; si es impar, deja 1. A puede ser menor o igual a B: no se puede determinar.' },
+  { id: 'h03', type: 'mc', d: 4, topic: 'Exponentes', stem: 'If 3<sup>x</sup> · 9<sup>x + 1</sup> = 27<sup>4</sup>, what is the value of x?', choices: ['10/3', '2', '8/3', '4', '14/3'], answer: 0, exp: 'Todo en base 3: 3<sup>x</sup> · 3<sup>2x+2</sup> = 3<sup>12</sup> → 3x + 2 = 12 → x = 10/3.' },
+  { id: 'h04', type: 'numeric', d: 4, topic: 'Porcentajes', stem: 'A distributor marks up the cost of a coil by 25% and then sells it at a 20% discount off the marked price. If the final selling price is $60, what was the original cost, in dollars?', answer: { value: 60 }, exp: '1.25 × 0.80 = 1.00. El precio final es igual al costo: 60.' },
+  { id: 'h05', type: 'multi', d: 5, topic: 'Números', stem: 'Which of the following could be the units digit of 7<sup>n</sup>, where n is a positive integer? Select all that apply.', choices: ['0', '1', '3', '5', '7', '9'], answer: [1, 2, 4, 5], exp: 'Las unidades de 7ⁿ ciclan 7, 9, 3, 1. Nunca 0 ni 5.' },
+  { id: 'h06', type: 'qc', d: 4, topic: 'Geometría', stem: 'In a circle with center O and radius r, chord AB has length r.', qa: 'The measure of angle AOB, in degrees', qb: '60', choices: QC, answer: 2, exp: 'OA = OB = AB = r: el triángulo es equilátero y el ángulo central mide 60°.' },
+  { id: 'h07', type: 'mc', d: 5, topic: 'Números', stem: 'How many integers from 1 to 100, inclusive, are divisible by 3 or by 5, but not by both?', choices: ['41', '47', '45', '53', '35'], answer: 0, exp: 'Divisibles por 3: 33. Por 5: 20. Por ambos (15): 6. Solo uno: 33 + 20 − 2·6 = 41.' },
+  { id: 'h08', type: 'numeric', d: 5, topic: 'Promedios', stem: 'The average (arithmetic mean) of five different positive integers is 10. What is the greatest possible value of the largest of the five integers?', answer: { value: 40 }, exp: 'Suma = 50. Minimiza los otros cuatro: 1 + 2 + 3 + 4 = 10. El mayor puede ser 40.' },
+  { id: 'h09', type: 'qc', d: 3, topic: 'Exponentes', stem: '', qa: '(−1)<sup>101</sup> + (−1)<sup>100</sup>', qb: '0', choices: QC, answer: 2, exp: 'Exponente impar da −1, par da 1. −1 + 1 = 0.' },
+  { id: 'h10', type: 'mc', d: 4, topic: 'Geometría', stem: 'A right circular cylinder has a volume of 72π and a height of 8. What is its lateral surface area?', choices: ['48π', '24π', '36π', '54π', '66π'], answer: 0, exp: 'πr²·8 = 72π → r = 3. Área lateral = 2πrh = 2π·3·8 = 48π.' },
+  { id: 'h11', type: 'qc', d: 5, topic: 'Álgebra', stem: 'x<sup>2</sup> = 2x', qa: 'x', qb: '1', choices: QC, answer: 3, exp: 'x² − 2x = 0 → x = 0 o x = 2. Uno es menor que 1 y el otro mayor. Nunca dividas entre x sin saber que no es 0.' },
+  { id: 'h12', type: 'mc', d: 3, topic: 'Estadística', stem: 'A list of 7 different numbers has a median of 12. If the largest number in the list is increased by 10, which of the following must be true?', choices: ['The median is still 12.', 'The mean is unchanged.', 'The range is unchanged.', 'The standard deviation is unchanged.', 'The median increases by 10.'], answer: 0, exp: 'El valor central no cambia si solo crece el máximo. Media, rango y desviación sí cambian.' },
+  { id: 'h13', type: 'multi', d: 4, topic: 'Desigualdades', stem: 'If |x − 3| < 5, which of the following could be the value of x? Select all that apply.', choices: ['−3', '−1', '0', '2', '7', '8'], answer: [1, 2, 3, 4], exp: '|x − 3| < 5 → −2 < x < 8. Valen −1, 0, 2 y 7.' },
+  { id: 'h14', type: 'qc', d: 5, topic: 'Números', stem: 'p is a prime number greater than 2.', qa: 'The remainder when p<sup>2</sup> is divided by 8', qb: '1', choices: QC, answer: 2, exp: 'p es impar. Todo impar al cuadrado deja residuo 1 al dividir entre 8 (1, 9, 25, 49...).' },
+  { id: 'h15', type: 'mc', d: 3, topic: 'Probabilidad', stem: 'A bag contains 4 red marbles and 6 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both are red?', choices: ['2/15', '4/25', '1/5', '4/15', '6/25'], answer: 0, exp: '(4/10)(3/9) = 12/90 = 2/15.' },
+  { id: 'h16', type: 'numeric', d: 4, topic: 'Tasas', stem: 'Pump A fills a tank in 6 hours. Pumps A and B together fill the same tank in 4 hours. How many hours would pump B take to fill the tank alone?', answer: { value: 12 }, exp: '1/4 − 1/6 = 1/12 de tanque por hora. B tarda 12 horas.' },
+  { id: 'h17', type: 'qc', d: 4, topic: 'Geometría', stem: 'A rectangle has a perimeter of 20.', qa: 'The area of the rectangle', qb: '25', choices: QC, answer: 3, exp: 'Con perímetro 20, el área máxima es 25 (cuadrado 5×5). Puede ser 25 o menor: no se puede determinar.' },
+  { id: 'h18', type: 'mc', d: 5, topic: 'Combinatoria', stem: 'In how many ways can 5 people be seated in a row of 5 chairs if two of them, Ana and Luis, refuse to sit next to each other?', choices: ['72', '48', '96', '120', '24'], answer: 0, exp: 'Total 5! = 120. Juntos: trátalos como bloque, 4!·2 = 48. Separados: 120 − 48 = 72.' },
+];
