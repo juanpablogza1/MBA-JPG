@@ -1,9 +1,9 @@
 // Service worker: guarda la app para usarla sin conexión (el mapa necesita internet).
-const CACHE = 'escalera-mba-v2';
+const CACHE = 'escalera-mba-v3';
 const SHELL = [
   './', './index.html', './manifest.webmanifest', './css/app.css',
   './js/app.js', './js/store.js', './js/engine.js', './js/practice.js', './js/quant.js', './js/gamify.js', './js/charts.js',
-  './data/schools.js', './data/verbal.js', './data/vocab.js', './data/quant-extra.js', './data/issues.js', './data/guide.js',
+  './data/schools.js', './data/basemap.json', './data/verbal.js', './data/vocab.js', './data/quant-extra.js', './data/issues.js', './data/guide.js',
   './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css',
   './fonts/barlow-condensed-latin-500-normal.woff2', './fonts/barlow-condensed-latin-600-normal.woff2', './fonts/barlow-condensed-latin-700-normal.woff2',
   './fonts/ibm-plex-sans-latin-400-normal.woff2', './fonts/ibm-plex-sans-latin-700-normal.woff2', './fonts/ibm-plex-sans-latin-400-italic.woff2',

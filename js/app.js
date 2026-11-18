@@ -184,15 +184,21 @@ function viewForecast() {
 let map = null;
 function viewMap() {
   const pred = predict();
-  view.innerHTML = `<section class="map-wrap"><div class="map-bar"><div class="chips" role="group" aria-label="Filtrar escuelas">${['Todas', 'Ivy League', 'M7', 'Texas', 'Favoritas'].map((c, i) => `<button class="chip-btn ${i === 0 ? 'on' : ''}" data-mf="${c}">${c}</button>`).join('')}</div><div class="legend">${['alcanzable', 'objetivo', 'reto'].map((c) => fitChip({ cat: c })).join('')}${hasData() ? '' : '<span class="meta">Haz el diagnóstico para colorear por ajuste</span>'}</div></div><div id="map" aria-label="Mapa de escuelas"></div><p class="map-off" hidden>El mapa necesita internet para cargar. La lista de escuelas funciona sin conexión.</p></section>`;
+  view.innerHTML = `<section class="map-wrap"><div class="map-bar"><div class="chips" role="group" aria-label="Filtrar escuelas">${['Todas', 'Ivy League', 'M7', 'Texas', 'Favoritas'].map((c, i) => `<button class="chip-btn ${i === 0 ? 'on' : ''}" data-mf="${c}">${c}</button>`).join('')}</div><div class="legend">${['alcanzable', 'objetivo', 'reto'].map((c) => fitChip({ cat: c })).join('')}${hasData() ? '' : '<span class="meta">Haz el diagnóstico para colorear por ajuste</span>'}</div></div><div id="map" aria-label="Mapa de escuelas"></div><p class="map-off meta" hidden>Sin conexión al mapa detallado: se muestra un mapa simplificado.</p></section>`;
   if (typeof L === 'undefined') { view.querySelector('.map-off').hidden = false; return; }
   if (map) { map.remove(); map = null; }
   map = L.map('map', { zoomControl: true, attributionControl: true }).setView([37, -92], 4);
+  // Mapa base simplificado propio: se ve aunque no haya internet; los mosaicos lo cubren cuando cargan.
+  map.createPane('base'); map.getPane('base').style.zIndex = 150;
+  fetch('data/basemap.json').then((r) => r.json()).then((gj) => {
+    if (!map) return;
+    L.geoJSON(gj, { pane: 'base', interactive: false, style: (f) => ({ className: f.properties.k === 'land' ? 'bm-land' : 'bm-states', weight: f.properties.k === 'land' ? 1 : 0.8 }) }).addTo(map);
+  }).catch(() => {});
   const dark = isDark();
   const tiles = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${dark ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`, { maxZoom: 18, subdomains: 'abcd', attribution: '&copy; OpenStreetMap contributors &copy; CARTO' }).addTo(map);
   tiles.on('tileerror', () => { view.querySelector('.map-off').hidden = false; });
   const layer = L.layerGroup().addTo(map);
-  L.circleMarker([HOME.lat, HOME.lon], { radius: 6, className: 'mk home' }).addTo(map).bindTooltip('Monterrey', { permanent: false });
+  L.circleMarker([HOME.lat, HOME.lon], { radius: 6, className: 'mk home' }).addTo(map).bindTooltip('Monterrey', { permanent: true, direction: 'right', className: 'home-label' });
   const draw = (filter) => {
     layer.clearLayers();
     const shown = SCHOOLS.filter((s) => filter === 'Todas' || (filter === 'Ivy League' && s.ivy) || (filter === 'M7' && s.tier === 'M7') || (filter === 'Texas' && s.texas) || (filter === 'Favoritas' && state.profile.favorites.includes(s.id)));
